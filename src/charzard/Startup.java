@@ -93,7 +93,7 @@ public class Startup {
 		{
 			tilenames.add(f.getName());
 			g.message("Starting " + f.getName());
-			createTile(f);
+			createTile(directory, f);
 		}
 		g.message("Done");
 		g.finish();
@@ -143,25 +143,26 @@ public class Startup {
 		}
 	}
 
-	public void createTile(File f)
+	public void createTile(String dir, File f)
 	{
 		String tilename = f.getName();
+		dir = dir + "/";
 		tilename = tilename.substring(0, tilename.length() - 4);
-		boolean success = (new File(tilename)).mkdirs();
+		boolean success = (new File(dir + tilename)).mkdirs();
 		if (!success)
 		{
-			// Directory creation failed
+			g.message("Folder Creation failed for " + f.getName());
 		}
 
-		File tileBlank = new File(tilename + "/" + tilename + "_1.png");
-		File tileBlinded = new File(tilename + "/" + tilename + "_2.png");
-		File tileBurned = new File(tilename + "/" + tilename + "_4.png");
-		File tileCharmed = new File(tilename + "/" + tilename + "_5.png");
-		File tileDanger = new File(tilename + "/" + tilename + "_9.png");
-		File tileFrozen = new File(tilename + "/" + tilename + "_7.png");
-		File tilePoisoned = new File(tilename + "/" + tilename + "_3.png");
-		File tileSilenced = new File(tilename + "/" + tilename + "_6.png");
-		File tileStunned = new File(tilename + "/" + tilename + "_8.png");
+		File tileBlank = new File(dir + tilename + "/" + tilename + "_1.png");
+		File tileBlinded = new File(dir + tilename + "/" + tilename + "_2.png");
+		File tileBurned = new File(dir + tilename + "/" + tilename + "_4.png");
+		File tileCharmed = new File(dir + tilename + "/" + tilename + "_5.png");
+		File tileDanger = new File(dir + tilename + "/" + tilename + "_9.png");
+		File tileFrozen = new File(dir + tilename + "/" + tilename + "_7.png");
+		File tilePoisoned = new File(dir + tilename + "/" + tilename + "_3.png");
+		File tileSilenced = new File(dir + tilename + "/" + tilename + "_6.png");
+		File tileStunned = new File(dir + tilename + "/" + tilename + "_8.png");
 
 		try
 		{
