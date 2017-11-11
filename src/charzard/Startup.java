@@ -1,14 +1,12 @@
 package charzard;
 
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -20,6 +18,8 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import com.dropbox.core.DbxAppInfo;
 import com.dropbox.core.DbxAuthFinish;
@@ -75,15 +75,11 @@ public class Startup {
 			DbxAuthFinish authFinish;
 			try
 			{
-				String code = new BufferedReader(new InputStreamReader(System.in)).readLine()
-						.trim();
+				String code = JOptionPane.showInputDialog(new JFrame(), "Auth Code");
 				authFinish = webAuth.finish(code);
 				String accessToken = authFinish.getAccessToken();
 				client = new DbxClientV2(config, accessToken);
 			} catch (DbxException e)
-			{
-				e.printStackTrace();
-			} catch (IOException e)
 			{
 				e.printStackTrace();
 			}
