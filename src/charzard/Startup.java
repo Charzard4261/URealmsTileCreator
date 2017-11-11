@@ -67,15 +67,15 @@ public class Startup {
 
 			// Have the user sign in and authorise your app.
 			String authorizeUrl = webAuth.start();
-			g.message("1. Go to: " + authorizeUrl);
+			g.message("1. Go to the link in the box");
 			g.message("2. Click \"Allow\" (you might have to log in first)");
-			g.message("3. Copy the authorization code.");
+			g.message("3. Copy the authorization code and paste it in the box");
 
 			// This will fail if the user enters an invalid authorisation code.
 			DbxAuthFinish authFinish;
 			try
 			{
-				String code = JOptionPane.showInputDialog(new JFrame(), "Auth Code");
+				String code = JOptionPane.showInputDialog(new JFrame(), "Auth Code", authorizeUrl);
 				authFinish = webAuth.finish(code);
 				String accessToken = authFinish.getAccessToken();
 				client = new DbxClientV2(config, accessToken);
